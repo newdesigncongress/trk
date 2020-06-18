@@ -1,0 +1,12 @@
+package-lock.json
+.DS_Store
+*.log
+*.cache
+cache/
+node_modules/
+sendgrid.env
+.env
+text/
+uploads/
+images/
+databases/

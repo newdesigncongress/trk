@@ -1,0 +1,43 @@
+extends layout
+
+block content
+  #preview(style='margin-top: 100px')
+    h5 TRK
+    h2 Training tool
+
+    if flash.error
+      p(style='color: red') #{flash.error}
+    
+    #introduction-panel
+      p Hi! You got a link to be a collaborator on a project, which consists of tagging #{taskCount} #{type === 'image' ? 'images' : 'text samples'}. Each task is priced at $#{taskPrice}.
+
+      if warning
+        #warning
+          | Content warning:
+          br
+          | !{warning}
+
+      #preview-button.button.wide Preview task
+
+      a(href=assignment_id + '/accept')
+        .button.wide Accept project
+
+    #preview-panel.hidden
+      p First #{type === 'image' ? 'image' : 'task'} shown here:
+
+      if type === 'image'
+        #preview-image
+          img(src='/images/' + task_id + '/' + previewFile alt='Preview of first task')
+
+      if type === 'text'
+        #preview-text
+          p #{textPreview}
+
+      a(href=assignment_id + '/accept')
+        .button.wide Accept project
+
+      a(href='/')
+        .button.wide Exit project
+
+block scripts
+  script(src="/js/preview.js" type="module")

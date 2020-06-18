@@ -1,0 +1,179 @@
+extends layout
+
+block content  
+  #about.half-column
+    h5 TRK
+    p Our calculator, a mathematical provocation, helps show how underpriced data labeling or data training tasks are. This calculator focuses on a worker's time and payment towards entire workdays and a living wage, as opposed to pricing a bunch of tasks in aggregate. We aim for a living wage, and our living wage focuses on Washington State, where Amazon is headquartered.
+    
+    ul#links
+      a(href='#methodology')
+        li
+          div.button Methodology
+      a(href='#process')
+        li
+          div.button Process
+      a(href="/essay")
+        li
+          div.button Essay
+    
+  .half-column
+    #calculator-panel
+      .section.narrow
+        h5(style='margin-top:-24px;') TRK
+        h2 Wage Calculator
+      
+      ul#controls
+        #prompt If you priced...
+        
+        #slider-total.control
+          .label
+            span 10000 
+            |  images labeled
+          .slider
+            .range
+              div minimum
+              div maximum
+            #handle-1.handle
+
+        #slider-rate.control
+          .label
+            | At $
+            span 10000 
+            |  per task
+          .slider
+            .range
+              div minimum
+              div maximum
+            #handle-2.handle
+
+        #slider-time.control
+          .label
+            | At around 
+            span 10000 
+            |  per task
+          .slider
+            .range
+              div minimum
+              div maximum
+            #handle-3.handle
+
+      #results
+        #results-icon
+          img(src='/img/happy.svg' alt='happy emoji')
+          img(src='/img/unhappy.svg' alt='unhappy emoji')
+
+
+        h2
+
+        p#duration
+
+        p#wage
+
+    #methodology-panel
+      .section
+        h5(style='margin-top:-24px;') TRK
+        h2 Methodology
+
+      .section
+        p 
+          | This project focuses on wage inequality, and we are aiming for a living wage. For this project, we read and reference the following listed materials, as well as interviewed fifteen different gig economy style workers who work across CrowdFlower, Mechanical Turk and Fiverr. For structuring the wage calculator, we looked at the largest demographics of Mechanical Turkers are workers, these workers were based in India and the United States. Because this project focuses on a living wage for all Turkers, we decided to focus on the US which has a higher minimum wage. Amazon is headquartered in Washington State, which has the highest minimum wage in the United States at $11USD per hour. The majority of Mechanical Turkers are
+
+          a(href='https://www.behind-the-enemy-lines.com/2018/01/how-many-mechanical-turk-workers-are.html') estimated to be paid 
+  
+          | around $2 USD.  As critical designers, this information adds a poetic provocation—shouldn't freelancers/gig workers of Amazon be paid fairly?
+
+        p In a time where even Amazon US employees are underpaid, wage inequality has never been more important. Amazon, CrowdFlower, any company using freelancers or gig economy employees should pay their workers not just a minimum wage, but a living wage. Pay equity is important for a better future.
+        
+        p For this research, we looked at: 
+
+        ul#sources
+          li 
+            a(href='https://www.theatlantic.com/business/archive/2018/01/amazon-mechanical-turk/551192') https://www.theatlantic.com/business/archive/2018/01/amazon-mechanical-turk/551192/
+          li 
+            | Alana Semuels, 
+            a(href='https://www.theatlantic.com/business/archive/2018/01/amazon-mechanical-turk/551192/') The Internet Is Enabling a New Kind of Poorly Paid Hell
+            | , The Atlantic, 2018 
+          li
+            | Andy Newman, 
+            a(href='https://www.nytimes.com/interactive/2019/11/15/nyregion/amazon-mechanical-turk.html') I Found Work on an Amazon Website. I made 97 Cents an Hour
+            | , The New York Times, 2019  
+          li 
+            | Paul Hitlin, 
+            a(href='https://www.pewresearch.org/internet/2016/07/11/research-in-the-crowdsourcing-age-a-case-study/') Research in the Crowdsourcing Age: A Case Study
+            | , Pew Research, 2016
+          li 
+            a(href='https://www.reddit.com/r/TurkerNation/') The Turker Nation Subreddit
+          li 
+            | Lee Fang, 
+            a(href='https://theintercept.com/2019/02/04/google-ai-project-maven-figure-eight/') Google Hired Gig Economy Workers to Improve Artificial Intelligence in Controversial Drone-Targeting Project
+            | , The Intercept, 2019
+          li 
+            | Tarleton Gillespie, Custodians of the Internet, Yale University Press, 2018
+          li 
+            | Lilly C Irani and M Silberman. 2013. Turkopticon: Interrupting worker invisibility in Amazon mechanical turk. In Proceedings of the SIGCHI conference on human factors in computing systems. ACM
+          li 
+            | Michael D. Buhrmester, Sanaz Talaifar, and Samuel D. Gosling, An Evaluation of Amazon’s Mechanical Turk, Its Rapid Rise, and Its Effective Use, Perspectives on Psychological Science, APS, 2018
+          li 
+            | Panos Ipeirotis, 
+            a(href='http://crowdsourcing-class.org/readings/downloads/platform/demographics-of-mturk.pdf') Demographics of Mechanical Turk
+            | , New York University
+          li 
+            | Ellie Pavlick, Matt Post, Ann Irvine, Dmitry Kachaev, Chris Callison-Burch, 
+            a(href='https://www.aclweb.org/anthology/Q14-1007/') The Language Demographics of Amazon Mechanical Turk
+            | , Transactions of the Association for Computational Linguistics, 2014
+          li 
+            | Joel Ross, Andrew Zaldivar, Lilly Irani, Bill Tomlinson, 
+            a(href='https://pdfs.semanticscholar.org/2261/5775c75ba7a227bce389532a6b2cae7c4ab7.pdf') Who are the Turkers? Worker Demographics in Amazon Mechanical Turk
+            | , ACM CHI EA 2010, 2010
+          li 
+            | Janine Bergs, Marianne Furrers, Ellie Harmon, Uma Ranis, M Six Silberman, Digital labour platforms and the future of work: Towards decent work in the online world, International Labour Organization, 2018
+          li 
+            | Yaron Singer and Manas Mittal, Pricing Tasks in Online Labor Markets, University of California, Berkeley, 2011
+
+
+      a(href='#calculator')
+        div.button Wage Calculator
+
+    #process-panel
+      .section
+        h5(style='margin-top:-24px;') TRK
+        h2 Process
+
+      .section
+
+        p We spoke to creators, Turkers, Fiverr workers, research labs that use Mechanical Turk, and AI artists to analyze and understand the product design of Mechanical Turk, and the labor injustice implications of the tool as well as worker and client interactions within the tool.
+
+        p From this, we created the Wage Calculator. An intervention interface designed to price tasks more fairly. But how does a “fairer” task system operate? What  are some constraints that are likely to be constant across location, needs, and workflows? How is work audited and paid for, and who ensures that workers are paid on time? How are disputes mediated? We outlined the following parameters:  
+
+        ul(style='padding-left: 2.6vw; margin-top: -20px; margin-bottom: 40px; opacity: 0.7;')
+          li time per task
+          li max hours per workers
+          li location
+          li processing fees
+          li project budget
+
+        p We then selected about 0.04 for a task that is 4 seconds long to test the outcomes.
+
+        p $0.04 at 4 seconds per task is 15 tasks per minute. 15 tasks per minute is 900 tasks per hour. 900 tasks per hour is a total, when tasks are priced at .04, is $36 per hour.
+
+        h3 limitations
+
+        p This equation doesn't take into account human variants like starting a new task, or the task even changing slightly. Training and labeling can be hard because nothing is ever completely uniform and the same, a take away both artists and Turkers revealed in our user interviews. Additionally, it's unsustainable to assume a human can work with the same rigor and quickness 1000 times in a row.
+
+        h3 Adjusted calculation:
+
+        p $0.04 task at 20 seconds which is 3 tasks per minute. 3 tasks per minute is 180 tasks per hour. 180 tasks per hour which is $7.2 per hour. However this assumes people pay per task, for example labeling one image versus labeling like 10 images. We noticed that in some tasks listed on Mechanical Turk, a single task could be priced at a few cents but include a bundle of multiple tasks, like labeling multiple images. The payment then didn’t reflect the longer time in regards to that bundled task.  
+
+        h3 How can we push people to price better? Does this tool do it?
+
+        p For a living wage in Washington State, our target due rate is: $127.40 USD/day working at 3 tasks per minute.
+
+        p To allow for client mistakes, worker breaks such as 5 mins at the top of every hour and a 45 minute lunch break, and human variants: 6.5 hours = 390 minutes = 1170 tasks
+
+        p The calculation breakdown of $127.40 USD / 1170 tasks = $0.1089 USD / task. At a minimum, workers should be at around 11cents per task to just clear a living wage before taxes. 
+
+      a(href='#calculator')
+        div.button Wage Calculator
+
+block scripts
+  script(src="/js/calculator.js" type="module")

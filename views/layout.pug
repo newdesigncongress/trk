@@ -1,0 +1,71 @@
+html(lang='en')
+  head
+    title #{pageTitle}
+    meta(charset='utf-8')
+    meta(http-equiv='Content-Type' content='text/html;charset=UTF-8')
+    meta(property='description' content='TRK "technically responsible knowledge" is a platform for data labelling and AI/ML training. Unlike other services, crowd-sourced workers and workers can set fair prices on this platform towards a living wage. TRK is open source, and offered under the MIT license.')
+    meta(property='keywords' content='Wage, Calculator, Training, Data, Mechanical, Turk, Open Source, AI, Labeling, Captioning')
+
+
+
+
+    if pageTitle === 'TRK - Wage Calculator' || pageTitle === 'TRK - Essay' || pageTitle === 'TRK - About'
+      meta(name='twitter:card' content='summary_large_image')
+      meta(name='twitter:creator' content='@carolinesinders')
+      meta(property='og:title' content='Technically Responsible Knowledge')
+      meta(property='og:description' content='TRK "technically responsible knowledge" is a platform for data labelling and AI/ML training. Unlike other services, crowd-sourced workers and workers can set fair prices on this platform towards a living wage. TRK is open source, and offered under the MIT license.')
+      meta(property='og:image' content='https://trk.network/img/social-card-calculator.png')
+    else
+      meta(name='robots' content='nofollow')
+  
+    link(rel='stylesheet', href='/css/normalize.min.css')
+    link(rel='stylesheet', href='/css/style.css')
+    if pageTitle === 'TRK - Sign In'
+      script(src="https://www.google.com/recaptcha/api.js" async defer)
+
+  body
+    #wrapper
+      #fixed-navigation
+        #menu-button
+          div
+        ul
+          if isLoggedIn
+            li 
+              a(href='/tasks') Your Dashboard
+          li 
+            if isLoggedIn
+              a(href='/signout') Log out
+            else
+              a(href='/signin') Log in
+      #header
+        #nav
+          #copyright © 2020
+          div
+            h5 TRK
+            ul
+              li
+                a(href='/tasks') Training Tool
+              li 
+                a(href='/#calculator') Wage Calculator
+              li  
+                a(href='/#methodology') Methodology
+              li  
+                a(href='/#process') Process
+              li  
+                a(href='/essay') Essay
+          ul
+            li
+              a(href='/about') About
+        #logo
+          a(href='/')
+            div.vertical
+              div.marquee TECHNICALLY RESPONSIBLE KNOWLEDGE · TECHNICALLY RESPONSIBLE KNOWLEDGE · TECHNICALLY RESPONSIBLE KNOWLEDGE · TECHNICALLY RESPONSIBLE KNOWLEDGE · TECHNICALLY RESPONSIBLE KNOWLEDGE · TECHNICALLY RESPONSIBLE KNOWLEDGE · TECHNICALLY RESPONSIBLE KNOWLEDGE · TECHNICALLY RESPONSIBLE KNOWLEDGE · 
+
+      #content
+        block content
+    
+    if pageTitle === 'TRK - Sign In'
+      script(src='https://www.google.com/recaptcha/api.js?render=6LeS2uQUAAAAAP4fVceipzu7jWj4Z6975K2tCxhf')
+
+    script(src="/js/navigation.js" type="module")
+    block scripts

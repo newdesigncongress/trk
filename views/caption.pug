@@ -1,0 +1,62 @@
+extends layout
+
+block content
+
+  .half-column
+
+    .section
+      h5 TRK
+      h2 #{title}
+
+      p #{instructions}
+
+    .section
+      .progress-bar
+        .gauge
+        .percentage 0%
+        .label Project progress
+      button#submit.button.wide.inactive Complete project
+      
+    .section
+      #navigation
+        button#previous.button.inline.inactive Previous #{type}
+        button#next.button.inline Next #{type}
+
+      if type === 'text'
+        p Select pieces of the text you want to caption, or add general captions below:
+        
+        div#add-general-caption
+          input.empty(type='text')
+          div.add-button +
+
+        ul#general-list
+      
+
+      ul#list
+
+    .section
+      p#browser-warning(style='font-size: 12px; line-height: 18px;')
+
+
+  .half-column
+    #viewer
+      if type === 'image'
+        img
+        canvas
+      else
+        #text
+          p
+          p
+        #labels  
+  
+block scripts
+  script.
+    const user_id = '#{user_id}'
+    const task_id = '#{task_id}'
+    const assignment_id = '#{assignment_id}'
+    const files = !{JSON.stringify(files)}
+    const dataType = '#{type}'
+    const taskCount = parseInt('#{taskCount}')
+    const startOffset = parseInt('#{start_offset}')
+
+  script(src="/js/caption.js" type="module")

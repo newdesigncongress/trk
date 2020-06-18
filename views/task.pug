@@ -1,0 +1,82 @@
+extends layout
+
+block content
+
+  .half-column
+
+    .section
+      h5 TRK
+      h2 #{task.title}
+
+      if flash.error
+        p(style='color:red') #{flash.error}
+
+      p #{task.description}
+
+    if task.ingredient_creator || task.ingredient_affiliation || task.ingredient_location || task.ingredient_language || task.ingredient_summary
+      .section
+        h2 Data Ingredients
+
+        p(style='margin-bottom: 10px;') Project information to be inserted in data model
+
+        ul#data-ingredients
+          if task.ingredient_creator
+            li.button.wide(style="cursor:auto; text-align: left; text-transform: inherit;") Creator: #{task.ingredient_creator} 
+          if task.ingredient_affiliation
+            li.button.wide(style="cursor:auto; text-align: left; text-transform: inherit;") Affiliation: #{task.ingredient_affiliation} 
+          if task.ingredient_location
+            li.button.wide(style="cursor:auto; text-align: left; text-transform: inherit;") Location: #{task.ingredient_location} 
+          if task.ingredient_language
+            li.button.wide(style="cursor:auto; text-align: left; text-transform: inherit;") Language: #{task.ingredient_language} 
+          if task.ingredient_summary
+            li.button.wide(style="cursor:auto; text-align: left; text-transform: inherit;") Summary: #{task.ingredient_summary} 
+
+    .section
+      h2 Actions
+
+      #export-data.button.wide Export data
+      a(href=`${task.id}/delete` onclick="return confirm('Are you sure you want to delete this project?')")#task-delete
+        .button.warning.wide Delete project
+
+  .half-column
+
+    .section
+      h2 Project progress
+      .progress-bar
+        .gauge(style=`width: ${progress * 100}%`)
+        .percentage #{Math.round(progress * 100) + ' %'}
+      .label Overall progress
+
+    .section
+      h2 Trainer progress
+      p Each collaborator is assigned #{taskCount} tasks.
+      ul
+        each assignment in assignments
+          if assignment.user === username
+            a(href=`${task.id}/assignments/${assignment.id}`)
+              li.progress-bar
+                .gauge(style=`width: ${(assignment.progress || 0) * 100}%`)
+                .percentage #{Math.round((assignment.progress || 0) * 100) + ' %'}
+                .label #{assignment.email}
+          else
+            li.progress-bar
+              .gauge(style=`width: ${(assignment.progress || 0) * 100}%`)
+              .percentage #{Math.round((assignment.progress || 0) * 100) + ' %'}
+              .label #{assignment.email}
+
+    .section#assignees
+      h2 Invite new collaborators
+      form(action=`/users/${username}/tasks/${task.id}/assignments/create`, enctype='application/x-www-form-urlencoded', method='post')
+        ul#emails
+          li
+            input.empty(name='assignee_email_0' type='text' placeholder='email address')
+        
+        #assignees-add.button.wide.inactive Add more collaborators
+
+        button.button(id='assignees-submit', type='submit') Send new invitations
+
+block scripts
+  script.
+    const taskId = '#{task.id}'
+
+  script(src="/js/task.js" type="module")

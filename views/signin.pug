@@ -1,0 +1,49 @@
+extends layout
+
+block content
+  #single-column
+    .section.narrow
+      h5 TRK
+      h2 Training tool
+
+    if flash.error
+      p(style='color:red') #{flash.error}
+
+    if flash.message
+      p(style='color:blue') #{flash.message}
+    
+    #signin-panel.hidden
+      form(method='post', action='/signin')
+        ul
+          li
+            label(for='username') Username
+            input(type='text', name='username', autocomplete='off', required, autofocus)
+          li
+            label(for='password') Password
+            input(type='password', name='password', autocomplete='off', required)
+
+        button(type='submit').button.wide sign in
+        a(href='#signup')
+          p#toggle-signup Do you need an account? Sign up
+
+    #signup-panel
+      form(name="form", method="post", action="/signup", novalidate)
+        label(for="username") Username
+        input(type="text", name="username", id="username", placeholder="Username", required, autofocus)
+        label(for="name") Full Name
+        input(type="name", name="name", id="name", required)
+        label(for="email") Email
+        input(type="email", name="email", id="email", placeholder="Email", required)
+        label(for="password") Password
+        input(type="password", name="password", id="password", required, match="verification")
+        label(for="verification") Repeat password
+        input(type="password", name="verification", id="verification", required, match="password")
+
+        .g-recaptcha(data-sitekey='6Le92uQUAAAAACRZ-n6s6U4sjOETq5_pkY8swKXz' style='margin: 25px auto;')
+
+        button(type="submit").button.wide sign up
+        a(href='#signin')
+          p#toggle-signin() Already have an account? Sign in
+
+block scripts
+  script(src="/js/signin.js" type="module")

@@ -1,0 +1,34 @@
+extends layout
+
+block content
+  .half-column
+    .section
+      h5 TRK
+      h2 Your projects
+
+      if flash.error
+        p(style='color:red') #{flash.error}
+
+      if flash.message
+        p(style='color:blue') #{flash.message}
+
+    .section
+      a(href='/users/' + username + '/tasks/create')
+        .button.wide.new-project
+          div start new project
+          div new
+        
+      ul
+        each task in tasks
+          a(href=`/users/${username}/tasks/${task.id}`)
+            li.button.project #{task.title}
+
+  .half-column
+    .section
+      h2 Tasks you have accepted
+
+    .section        
+      ul
+        each assignment in assignments
+          a(href=`/users/${assignment.user_id}/tasks/${assignment.task_id}/assignments/${assignment.assignment_id}`)
+            li.button.project #{assignment.title}

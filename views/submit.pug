@@ -1,0 +1,64 @@
+extends layout
+
+block content
+  #single-column
+    .section
+      h5 TRK
+      h2 #{title}
+
+    if flash.error
+      p(style='color:red') #{flash.error}
+
+    .section
+      p Great! You've completed this project! Press 'submit' to send your results. 
+        if ask_name || ask_location || ask_age || ask_expertise
+          | The organizer is asking for some additional information. It's not required, so just enter N/A if you decline, but this information is extremely helpful.
+
+    .section
+      form(action=actionUrl method="post")
+        input(id="captions" name="captions" style="display: none;" type="text")
+
+        if ask_name
+          input(id="name" name="name" type="text" placeholder='Name')
+          br
+        
+        if ask_location
+          input(id="location" name="location" type="text" placeholder='City/Country')
+          br
+
+        if ask_age
+          select(id="age" name="age" placeholder='Age')
+            option Not disclosing
+            option 18-24
+            option 25-31
+            option 31-44
+            option 45-60
+            option 60+
+          br
+
+        if ask_expertise
+          select(id="expertise" name="expertise" placeholder='Field of expertise')
+            option Not disclosing
+            option Administration
+            option Art & Design
+            option Education
+            option Engineering
+            option Finance
+            option Health
+            option Law
+            option Manufacturing
+            option Retail
+            option Science
+            option Services
+            option Other
+          br
+
+        button.button.wide(type="submit") Submit!
+  
+block scripts
+  script.
+    const user_id = '#{user_id}'
+    const task_id = '#{task_id}'
+    const assignment_id = '#{assignment_id}'
+    const captions = localStorage.getItem(`${user_id}-${task_id}-${assignment_id}-captions`)
+    document.querySelector('#captions').value = captions

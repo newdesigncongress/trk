@@ -1,0 +1,164 @@
+extends layout
+
+block content
+
+  form(action=`/users/${username}/tasks`, enctype='multipart/form-data', method='post')
+
+    #panels
+      #general
+        .half-column
+          h5(style='margin-bottom:10px;') TRK
+
+          if flash.error
+            p(style='color: red') #{flash.error}
+
+          ul              
+            li
+              input(autocomplete='off', name='title', type='text', placeholder='Project title')
+            li
+              textarea(autocomplete='off' name='description' type='textarea' placeholder='Information about the project (date of creation, your location, your reason for making this data set)')
+            li
+              label(for='type') Content type
+                .columns
+                  .column
+                    input(name='type', type='radio', id='image', value='image' checked)
+                    label(for='image') Image
+                  .column
+                    input(name='type', type='radio', id='text', value='text')
+                    label(for='text') Text
+
+          .section
+            #back-general.button Back
+            #next-general.button Continue
+
+          .section.errors
+
+          .section
+            p#browser-warning(style='font-size: 12px; line-height: 18px;')
+
+        .half-column
+
+          #file-drop
+            p 
+              | Drag and drop files to caption here. This form accepts 
+              span.image-type multiple images (max 1000 .jpg or .png files, max 800 pixel wide)
+              span.text-type(style='display: none;') single text files (.csv, each text sample on a different row, 20mb max, 10000 rows max)
+              |.
+
+
+            label.button(for='file' style='text-transform:lowercase; display:inline-block;') Select files
+            input(type='file' name='file' id='file' multiple accept='image/jpg, image/png' onchange='clearPreview(); handleUpload(this.files);' style='display: none;')
+            
+            p#upload-error
+            
+            #gallery ↑
+
+      #assignees
+        .half-column
+          h5 TRK
+
+          .section
+            h2 Invite collaborators
+          .section
+            input.short(autocomplete='off', name='limit', type='number' placeholder='∞')
+            span tasks per collaborator
+            input.short(autocomplete='off', name='price', type='number' step='0.01' placeholder='0.10')
+            span USD per task
+          .section
+            label Add collaborators email addresses
+            ul#emails
+              li
+                input.empty(name='assignee_email_0' type='text' placeholder='email address')
+            
+            #assignees-add.button.wide.inactive Add more collaborators
+
+          .section
+            #next-assignees.button Continue
+            #back-assignees.button Back
+
+          .section.errors
+
+        .half-column
+          .section
+            h2 Additional questions
+          .section
+            p These optional questions will be asked from each collaborator upon project completion.
+            ul
+              li(style='margin-bottom: 20px;')
+                input(name="ask_name" type='checkbox' checked)
+                label.inline Ask collaborator's name
+              li(style='margin-bottom: 20px;')
+                input(name="ask_location" type='checkbox')
+                label.inline Ask collaborator's location
+              li(style='margin-bottom: 20px;')
+                input(name="ask_age" type='checkbox')
+                label.inline Ask collaborator's age range
+              li(style='margin-bottom: 20px;')
+                input(name="ask_expertise" type='checkbox')
+                label.inline Ask collaborator's field of expertise
+
+      #instructions
+        .half-column
+          .section
+            h5 TRK
+            h2 Project instructions
+
+          .section
+            p These instructions will be emailed to your collaborators to start training the data set. Be specific and think about all of the pertinent information they would need. Do you need certain images sorted, or specific labels to text? What kind, and what should they keep in mind?
+
+            textarea(autocomplete='off', name='instructions', type='textarea', placeholder='Project instructions')
+
+          .section
+            h2 Add content warning
+            #warning-yes.button.inline yes
+            #warning-no.button.inline.focused no
+
+          .section
+            #content-warning.section.hidden
+              textarea(autocomplete='off', name='warning', type='textarea', placeholder='Content warning')
+
+          .section
+            #next-instructions.button Continue
+            #back-instructions.button Back
+
+          .section.errors
+
+        .half-column
+          .section
+            h2 Optional data ingredients
+
+          .section
+            ul#ingredients
+              li
+                input(autocomplete='off', name='ingredient_creator', type='text', placeholder='Creator of dataset')
+              li
+                input(autocomplete='off', name='ingredient_affiliation', type='text', placeholder='Affiliation')
+              li
+                input(autocomplete='off', name='ingredient_location', type='text', placeholder='Location')
+              li
+                input(autocomplete='off', name='ingredient_language', type='text', placeholder='Language')
+              li
+                input(autocomplete='off', name='ingredient_summary', type='text', placeholder='Summary of data set')
+
+      #preview(style='display:flex; width: inherit;')
+        .half-column
+          .section
+            h5 TRK
+            h2 Preview and submit
+
+          .section
+            p These instructions will be emailed to your collaborators to start training the data set.
+    
+          .section
+            button(type='submit' style='width: 50%').button#submit-button Create project
+            #next-preview.button Continue
+            #back-preview.button Back
+
+          .section.errors
+
+        .half-column
+          #preview-content
+
+
+block scripts
+  script(src="/js/task-create.js" type="module")

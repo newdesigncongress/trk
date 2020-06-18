@@ -1,0 +1,40 @@
+{
+  "name": "mturk-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "setup": "node setup.js",
+    "start": "nodemon --config nodemon.json index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@sendgrid/mail": "^6.5.4",
+    "async": "^3.2.0",
+    "axios": "^0.19.2",
+    "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
+    "eases": "^1.0.8",
+    "express": "^4.17.1",
+    "express-session": "^1.16.2",
+    "express-validator": "^6.4.0",
+    "extract-zip": "1.6.0",
+    "file-extension": "^4.0.5",
+    "https": "^1.0.0",
+    "image-size": "^0.8.3",
+    "level": "^5.0.1",
+    "level-session-store": "^2.2.0",
+    "multer": "^1.4.2",
+    "nodemon": "^1.19.2",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "pug": "^2.0.4",
+    "pwd": "^1.1.0",
+    "request": "^2.88.2",
+    "shortid": "^2.2.15"
+  },
+  "engines": {
+    "node": "10.x"
+  }
+}
