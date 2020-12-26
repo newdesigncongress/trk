@@ -91,8 +91,8 @@ function users (app) {
             }
           }
         )
-        .then((res) => {
-          if (!res.data.success) {
+        .then((recaptchaResponse) => {
+          if (!recaptchaResponse.data.success) {
             req.flash('error', 'Internal server error, please try again')
             return res.redirect('/signin#signup')
           }
